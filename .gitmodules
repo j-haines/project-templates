@@ -7,3 +7,6 @@
 [submodule "py3/aiohttp-vue-webpack"]
 	path = py3/aiohttp-vue-webpack
 	url = git@github.com:j-haines/aiohttp-vue-webpack
+[submodule "aiohttp-vue-webpack"]
+	path = aiohttp-vue-webpack
+	url = git@github.com:j-haines/aiohttp-vue-webpack
