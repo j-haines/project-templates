@@ -1,6 +1,6 @@
 [submodule "bazel-abseil"]
 	path = bazel-abseil
-	url = ./cpp/bazel-abseil/
+	url = git@github.com:j-haines/bazel-abseil
 [submodule "cpp/bazeil-baseil"]
 	path = cpp/bazeil-baseil
 	url = git@github.com:j-haines/bazel-abseil
@@ -10,3 +10,6 @@
 [submodule "aiohttp-vue-webpack"]
 	path = aiohttp-vue-webpack
 	url = git@github.com:j-haines/aiohttp-vue-webpack
+[submodule "cpp/bazel-abseil"]
+	path = cpp/bazel-abseil
+	url = git@github.com:j-haines/bazel-abseil
