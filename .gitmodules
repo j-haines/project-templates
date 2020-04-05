@@ -13,3 +13,6 @@
 [submodule "cpp/bazel-abseil"]
 	path = cpp/bazel-abseil
 	url = git@github.com:j-haines/bazel-abseil
+[submodule "py3/asyncio-cli"]
+	path = py3/asyncio-cli
+	url = git@github.com:j-haines/asyncio-cli
