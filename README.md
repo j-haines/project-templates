@@ -5,7 +5,7 @@ New templates can be created by adding a git submodule to the appropriate langua
 
 ## Usage
 
-```
+```bash
 $ ./project
 usage: project.py [-h] {clone} ...
 
@@ -16,7 +16,7 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
-```
+```bash
 $ ./project clone -h
 usage: project.py clone [-h] {cpp,py3} template destination [project_name]
 
@@ -29,4 +29,15 @@ positional arguments:
 
 optional arguments:
   -h, --help    show this help message and exit
+```
+
+```bash
+$ ./project list -h 
+usage: project.py list [-h] language
+
+positional arguments:
+  language    The programming language to list project templates for.
+
+optional arguments:
+  -h, --help  show this help message and exit
 ```

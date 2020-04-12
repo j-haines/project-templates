@@ -51,7 +51,7 @@ def _list_recursive(
     """List all files and folders under `parent`, recursively up to `maxdepth`.
 
     If maxdepth is less than 0, the function will list recursively the full
-     fill tree with no limit."""
+     file tree with no limit."""
     accumulator = accumulator or []
 
     # stop recursion
