@@ -17,6 +17,11 @@ _SUPPORTED_PROJECT_LANGUAGES: Set[str] = {
     "py3",
 }
 
+# Set of folders to skip when patching the project name
+_PATCH_PROJECT_NAME_IGNORE_FOLDERS = {
+    '.git',
+}
+
 logging.basicConfig(format="%(message)s", level=logging.INFO)
 log = logging.getLogger(__name__)
 
@@ -35,7 +40,10 @@ def _clone_project_template(src: pathlib.Path, dst: pathlib.Path) -> None:
         subprocess.check_output(shlex.split(cmd), stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
         output = e.output.decode("utf-8")
-        raise Exception(f"command '{cmd}' exited with non-zero error code, output: \n\t{output}")
+        raise Exception(
+            f"command '{cmd}' exited with non-zero error code, "
+            f"output: \n\t{output}"
+        )
 
 def _init_project(destination: pathlib.Path, project_name: str) -> None:
     all_files = _list_recursive(destination)
@@ -46,7 +54,9 @@ def _init_project(destination: pathlib.Path, project_name: str) -> None:
 
 
 def _list_recursive(
-    parent: pathlib.Path, accumulator: Optional[List[pathlib.Path]] = None, maxdepth: int = -1
+    parent: pathlib.Path,
+    accumulator: Optional[List[pathlib.Path]] = None,
+    maxdepth: int = -1,
 ) -> List[pathlib.Path]:
     """List all files and folders under `parent`, recursively up to `maxdepth`.
 
@@ -58,14 +68,21 @@ def _list_recursive(
     if maxdepth == 0:
         return [parent]
 
-    children = [child for child in parent.iterdir() if not child.name.startswith(".")]
-
-    for child in children:
+    for child in parent.iterdir():
         if child.is_dir():
+            if child.name in _PATCH_PROJECT_NAME_IGNORE_FOLDERS:
+                continue
+
             if maxdepth > 0:
                 maxdepth = maxdepth - 1
 
-            accumulator.extend(_list_recursive(child, accumulator=accumulator, maxdepth=maxdepth))
+            accumulator.extend(
+                _list_recursive(
+                    child,
+                    accumulator=accumulator,
+                    maxdepth=maxdepth,
+                ),
+            )
         else:
             accumulator.append(child)
 
